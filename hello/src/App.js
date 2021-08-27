@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
 // const element = <div>This is JSX</div>;
 // const element = <img src={user.avatarUrl}></img>;
@@ -10,11 +11,24 @@ const element = (
   </div>
 );
 
-function greeting(name){
-  if(name === "react") // 등호표시 주의
-  return "hello! " + name;
-  else
-  return "hello! guest";
+//클래스형 컴포넌트
+class Hello extends React.Component{
+  render(){
+    return(
+      <div>
+        <h1>{this.props.name}</h1>
+      </div>
+    );
+  }
+}
+
+//함수형 컴포넌트
+function Greeting(prop){  //컴포넌트는 항상 대문자로 시작해야한다.
+  // if(prop.name === "react") // 등호표시 주의
+  // return "hello! " + prop.name;
+  // else
+  // return "hello! guest";
+  return "hello!" + prop.name;
 }
 
 function App() {
@@ -28,7 +42,13 @@ function App() {
           { element }
 
           <h1>
-            {greeting("react1")}
+            <Greeting name={"mino"}/>
+            <Greeting name={"minggu"}/>
+            <Greeting name={"binggu"}/>
+          </h1>
+
+          <h1>
+            <Hello name="hi"/>
           </h1>
         </p>
         <a
