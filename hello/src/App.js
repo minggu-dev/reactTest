@@ -33,13 +33,41 @@ function Greeting(prop) {
   return `hello!${prop.name}`;
 }
 
+function LoginButton() {
+  return <button>로그인</button>;
+}
+function LogoutButton() {
+  return <button>로그아웃</button>;
+}
+
+function UserButton(props) {
+  if (props.isLoggedIn) {
+    return <LogoutButton />;
+  }
+  return <LoginButton />;
+}
+
 function App() {
+  let Button;
+  let isLoggedIn = false;
+  if (isLoggedIn) {
+    Button = <LogoutButton />;
+  } else {
+    Button = <LoginButton />;
+  }
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload. Hi~
+          <UserButton isLoggedIn={false} />
+
+          {Button}
+
+          {isLoggedIn ? <LogoutButton /> : <LoginButton />}
+          <br></br>
+          {isLoggedIn && <div>안녕하세요?</div>}
+          {isLoggedIn ? <LogoutButton /> : <LoginButton />}
           {element}
           <h1>
             <Greeting name="mino" />
